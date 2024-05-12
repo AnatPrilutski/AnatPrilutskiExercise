@@ -28,8 +28,9 @@ def print_positive_numbers(list_of_numbers: list) -> None:
 
 
 def print_numbers_from_smallest_to_biggest(list_of_numbers: list) -> None:
-    list_of_numbers.sort()
-    print(f"The numbers sorted from smallest to biggest: {list_of_numbers}")
+    list_sorted = list_of_numbers
+    list_sorted.sort()
+    print(f"The numbers sorted from smallest to biggest: {list_sorted}")
 
 
 if __name__ == '__main__':
