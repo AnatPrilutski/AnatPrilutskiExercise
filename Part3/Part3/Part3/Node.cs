@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 
 namespace Part3
 {
-    public class Node
+    public class Node<T>
     {
-        private int Value { get; set; }
-        private Node Next { get; set; }
-
+        public int Value { get; set; }
+        public Node<int> Next { get; set; }
         public Node(int value)
         {
             this.Value = value;
         }
-
-        public Node(int value, Node next) 
-        { 
+        public Node(int value, Node<int> next)
+        {
             this.Value = value;
             this.Next = next;
         }
-
     }
 }
