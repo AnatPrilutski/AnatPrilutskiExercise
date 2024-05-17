@@ -18,6 +18,7 @@ namespace Part3
             {
                 throw new IndexOutOfRangeException("Please enter a number up to 999,999,999,999");
             }
+
             this.Number = number;
         }
         public override string ToString()
@@ -26,6 +27,7 @@ namespace Part3
             {
                 return "Zero";
             }
+
             return GetBillions() + GetMillions() + GetThousands() + GetHundreds(this.Number) + GetTeensOrTens(this.Number);
         }
         public string GetUnits(long number)
@@ -38,6 +40,7 @@ namespace Part3
             {
                 return TeensInWords[number % 10];
             }
+
             return TensInWords[(number % 100) / 10] + " " + GetUnits(number);
         }
         public string GetHundreds(long number)
@@ -47,6 +50,7 @@ namespace Part3
             {
                 return "";
             }
+
             return GetUnits(numberOfHundreds) + " Hundred ";
         }
         public string GetThousands()
@@ -56,6 +60,7 @@ namespace Part3
             {
                 return "";
             }
+
             string thousands = GetHundreds(numberOfThousands) + GetTeensOrTens(numberOfThousands);
             return thousands + " Thousand ";
         }
@@ -66,6 +71,7 @@ namespace Part3
             {
                 return "";
             }
+
             string millions = GetHundreds(numberOfMillions) + GetTeensOrTens(numberOfMillions);
             return millions + " Million ";
         }
@@ -76,6 +82,7 @@ namespace Part3
             {
                 return "";
             }
+
             string billion = GetHundreds(numberOfBillions) + GetTeensOrTens(numberOfBillions);
             return billion + " Billion "; 
         }
@@ -90,6 +97,7 @@ namespace Part3
             {
                 sum = sum + (new NumericalExpression(i).ToString().Trim()).Length;
             }
+
             return sum;
         }
         // The OOP concept is overloading - allows a class to have multiple methods with the same name but different parameters. 
@@ -100,6 +108,7 @@ namespace Part3
             {
                 sum = sum + (new NumericalExpression(i).ToString().Replace(" ", "")).Length;
             }
+
             return sum;
         }
     }
