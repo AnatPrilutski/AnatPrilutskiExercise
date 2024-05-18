@@ -120,7 +120,7 @@ namespace Part3
             long sum = 0;
             for (long i = 0; i < Math.Abs(number.GetValue()); i++)
             {
-                sum = sum + (new NumericalExpression(i).ToString().Replace(" ", "")).Length;
+                sum = sum + (new NumericalExpression(i).ToString().Trim()).Length;
             }
 
             return sum;
