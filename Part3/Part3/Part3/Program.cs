@@ -19,7 +19,7 @@ namespace Part3
             //Console.WriteLine(list.GetMinNode().Value);
             //Console.WriteLine(list.IsCircular());
 
-            NumericalExpression number = new NumericalExpression(54321);
+            NumericalExpression number = new NumericalExpression(-54321);
             Console.WriteLine(number.ToString());
             Console.WriteLine(number.GetValue());
             Console.WriteLine(NumericalExpression.SumLetters(2));

@@ -14,9 +14,9 @@ namespace Part3
         private static string[] TensInWords = { "", "", "Twenty", "Thirty", "Fourty", "Fifty", "Sixty", "Seventy", "Eighty", "Ninety" };
         public NumericalExpression(long number)
         {
-            if(number > 999999999999)
+            if (number > 999999999999 || number < -999999999999)
             {
-                throw new IndexOutOfRangeException("Please enter a number up to 999,999,999,999");
+                throw new IndexOutOfRangeException("Please enter a number up to -+999,999,999,999");
             }
 
             this.Number = number;
@@ -28,14 +28,24 @@ namespace Part3
                 return "Zero";
             }
 
-            return GetBillions() + GetMillions() + GetThousands() + GetHundreds(this.Number) + GetTeensOrTens(this.Number);
+            return PrintIfNegative() + GetBillions() + GetMillions() + GetThousands() + GetHundreds(this.Number) + GetTeensOrTens(this.Number);
+        }
+        public string PrintIfNegative()
+        {
+            if (this.Number < 0)
+            {
+                return "Minus ";
+            }
+
+            return "";
         }
         public string GetUnits(long number)
         {
-            return UnitsInWords[number % 10] + " "; 
+            return UnitsInWords[Math.Abs(number) % 10] + " "; 
         }
         public string GetTeensOrTens(long number)
         {
+            number = Math.Abs(number);
             if ((number % 100) < 20 && (number % 100) > 10)
             {
                 return TeensInWords[number % 10];
@@ -45,6 +55,7 @@ namespace Part3
         }
         public string GetHundreds(long number)
         {
+            number = Math.Abs(number);
             long numberOfHundreds = number / 100;
             if (numberOfHundreds == 0) 
             {
@@ -55,7 +66,8 @@ namespace Part3
         }
         public string GetThousands()
         {
-            long numberOfThousands = this.Number / 1000;
+            long number = Math.Abs(this.Number);
+            long numberOfThousands = number / 1000;
             if (numberOfThousands == 0)
             {
                 return "";
@@ -66,7 +78,8 @@ namespace Part3
         }
         public string GetMillions()
         {
-            long numberOfMillions = this.Number / 1000000;
+            long number = Math.Abs(this.Number);
+            long numberOfMillions = number / 1000000;
             if (numberOfMillions == 0)
             {
                 return "";
@@ -77,7 +90,8 @@ namespace Part3
         }
         public string GetBillions()
         {
-            long numberOfBillions = this.Number / 1000000000;
+            long number = Math.Abs(this.Number);
+            long numberOfBillions = number / 1000000000;
             if (numberOfBillions == 0)
             {
                 return "";
@@ -91,9 +105,9 @@ namespace Part3
             return this.Number;
         }
         public static long SumLetters(long number)
-        {
+        { 
             long sum = 0;
-            for (long i = 0; i < number; i++)
+            for (long i = 0; i < Math.Abs(number); i++)
             {
                 sum = sum + (new NumericalExpression(i).ToString().Trim()).Length;
             }
@@ -104,7 +118,7 @@ namespace Part3
         public static long SumLetters(NumericalExpression number)
         {
             long sum = 0;
-            for (long i = 0; i < number.GetValue(); i++)
+            for (long i = 0; i < Math.Abs(number.GetValue()); i++)
             {
                 sum = sum + (new NumericalExpression(i).ToString().Replace(" ", "")).Length;
             }
